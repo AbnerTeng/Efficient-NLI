@@ -15,7 +15,7 @@ class DataProcessor:
         self.type = _type
 
 
-    def getlist(self):
+    def getlist(self) -> list:
         """
         turn dataframe into list
         """
@@ -32,6 +32,25 @@ class DataProcessor:
                 ]
             ].values.tolist()
         return data_list
+
+
+    # def getlist_multi(self) -> list:
+    #     """
+    #     turn dataframe into list
+    #     """
+    #     if self.type == "train":
+    #         data_list = self.dat[
+    #             [
+    #                 'premise', 'hypothesis', 'lang_label', 'label'
+    #             ]
+    #         ].values.tolist()
+    #     elif self.type == "test":
+    #         data_list = self.dat[
+    #             [
+    #                 'premise', 'hypothesis', 'lang_label'
+    #             ]
+    #         ].values.tolist()
+    #     return data_list
 
 
 class ContraData(Dataset):

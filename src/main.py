@@ -22,8 +22,7 @@ def arguments() -> argparse.ArgumentParser:
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--type", type=str, default="train",
-        help="train or test"
+        "--mode", type=str, default="mulit-lang"
     )
     return parser.parse_args()
 
@@ -49,10 +48,9 @@ if __name__ == "__main__":
         'optim': AdamW(model.parameters(), lr=5e-5),
         'criteria': nn.CrossEntropyLoss(),
     }
-    # if args.type == "train":
     train_dat_proc = DataProcessor(
-        f"{os.getcwd()}/data_mining_final/train.csv",
-        "train"
+        f"{os.getcwd()}/data/train.csv",
+        "train",
     )
     train_list = train_dat_proc.getlist()
     contradict_dataset = ContraData(
@@ -64,7 +62,7 @@ if __name__ == "__main__":
     )
     # elif args.type == "test":
     test_dat_proc = DataProcessor(
-        f"{os.getcwd()}/data_mining_final/test.csv",
+        f"{os.getcwd()}/data/test.csv",
         "test"
     )
     test_list = test_dat_proc.getlist()
@@ -78,7 +76,7 @@ if __name__ == "__main__":
     bert_nli = BertNLI(cfg['model'])
     cfg['model'] = bert_nli.to(cfg['device'])
     training = Training(train_loader, test_loader, cfg)
-    # items = training.train()
+    training.train()
     training.evaluate()
-    
+
     

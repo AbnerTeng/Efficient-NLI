@@ -1,4 +1,6 @@
-import os
+"""
+Feature Engineering
+"""
 from .utils import load_data
 
 
@@ -22,10 +24,4 @@ class FeatureEngineering:
         self.train_data['lang_label'] = self.train_data['language'].map(lang_map)
         self.test_data['lang_label'] = self.test_data['language'].map(lang_map)
         return self.train_data, self.test_data
-
-if __name__ == "__main__":
-    train_path = f"{os.getcwd()}/data_mining_final/train.csv"
-    test_path = f"{os.getcwd()}/data_mining_final/test.csv"
-    fe = FeatureEngineering(train_path, test_path)
-    train_data, test_data = fe.generate_cols()
         

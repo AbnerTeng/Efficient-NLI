@@ -49,7 +49,7 @@ if __name__ == "__main__":
         'criteria': nn.CrossEntropyLoss(),
     }
     train_dat_proc = DataProcessor(
-        f"{os.getcwd()}/data/train.csv",
+        f"{os.getcwd()}/data/train_clean_v2.csv",
         "train",
     )
     train_list = train_dat_proc.getlist()
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     )
     # elif args.type == "test":
     test_dat_proc = DataProcessor(
-        f"{os.getcwd()}/data/test.csv",
+        f"{os.getcwd()}/data/test_clean_v2.csv",
         "test"
     )
     test_list = test_dat_proc.getlist()

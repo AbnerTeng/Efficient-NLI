@@ -1,0 +1,9 @@
+torch==2.0.0
+pandas==1.5.3
+nltk==3.8.1
+xgboost==1.7.5
+transformers==4.28.1
+scikit-learn==1.2.2
+argparse==1.4.0
+tqdm==4.64.1
+googletrans==4.0.0rc1

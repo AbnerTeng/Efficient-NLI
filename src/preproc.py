@@ -34,25 +34,6 @@ class DataProcessor:
         return data_list
 
 
-    # def getlist_multi(self) -> list:
-    #     """
-    #     turn dataframe into list
-    #     """
-    #     if self.type == "train":
-    #         data_list = self.dat[
-    #             [
-    #                 'premise', 'hypothesis', 'lang_label', 'label'
-    #             ]
-    #         ].values.tolist()
-    #     elif self.type == "test":
-    #         data_list = self.dat[
-    #             [
-    #                 'premise', 'hypothesis', 'lang_label'
-    #             ]
-    #         ].values.tolist()
-    #     return data_list
-
-
 class ContraData(Dataset):
     """
     create dataset for training
@@ -74,10 +55,9 @@ class ContraData(Dataset):
             truncation=True,
             return_tensors='pt'
         )
-
         input_ids = encoding['input_ids'].squeeze()
         attention_mask = encoding['attention_mask'].squeeze()
-        label = torch.tensor(label, dtype=torch.long)
+        label = torch.Tensor(label, dtype=torch.long)
 
         return {
             'input_ids': input_ids,

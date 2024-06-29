@@ -13,6 +13,8 @@ import transformers
 from transformers import BertTokenizer, BertModel, AutoTokenizer, AutoModel
 from .preproc import DataProcessor, ContraData, ContraTestData
 from .train import BertNLI, Training, Classifier
+from .preproc_v2 import auto_eda
+
 warnings.filterwarnings("ignore")
 transformers.logging.set_verbosity_error()
 
@@ -22,6 +24,10 @@ def parse_args() -> argparse.ArgumentParser:
     define arguments
     """
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--do_eda",
+        action="store_true"
+    )
     parser.add_argument(
         "--mode", type=str, default="bert"
     )
@@ -56,6 +62,9 @@ if __name__ == "__main__":
     _device = torch.device('mps') if torch.backends.mps.is_available() else torch.device('cpu')
     train_data = f"{os.getcwd()}/data/train_clean_v2.csv"
     test_data = f"{os.getcwd()}/data/test_clean_v2.csv"
+    if args.do_eda:
+        auto_eda(train_data)
+        auto_eda(test_data)
     if args.mode == "bert":
         bert_tokenizer = BertTokenizer.from_pretrained(
             'bert-base-uncased',

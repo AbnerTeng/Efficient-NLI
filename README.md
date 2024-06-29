@@ -1,4 +1,11 @@
-# Natural Language Inference with different approaches
+# Efficient-NLI
+
+Efficient approaches for natural language inference (NLI) tasks
+
+Authors
+
+- [Yu-Chen (Abner) Den](https://www.abnerteng.github.io)
+- [Meng-Chen (Angela) You](https://www.linkedin.com/in/meng-chun-you/)
 
 ## Set the Environment
 
@@ -15,7 +22,19 @@ source your_venv_name/bin/activate
 pip install -r requirements.txt
 ```
 
-## Preparing Translated Dataset
+## Dataset in-use
+
+[Stanford Natural Language Inference (SNLI) dataset](https://nlp.stanford.edu/projects/snli/)
+[Dataset card](https://huggingface.co/datasets/stanfordnlp/snli)
+
+### Download the dataset
+
+```bash
+chmod +x scripts/download_data.sh
+bash scripts/download_data.sh
+```
+
+### Preprocessing
 
 ```bash
 chmod +x text_preproc.sh

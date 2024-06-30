@@ -1,6 +1,7 @@
 """
 train session
 """
+from typing import Dict, Union, List
 import numpy as np
 import pandas as pd
 import torch
@@ -16,12 +17,11 @@ class Classifier:
     """
     XLM RoBERTa Embedding with XGBoost Classifier
     """
-    def __init__(self, cfg: dict) -> None:
-        self.all_embeddings = []
+    def __init__(self, cfg: Dict[str, Union[str, int, float]]) -> None:
+        self.all_embeddings = list()
         self.cfg = cfg
 
-
-    def embedding(self, input_text: list) -> torch.Tensor:
+    def embedding(self, input_text: List[str]) -> torch.Tensor:
         """
         Get word embedding
         """

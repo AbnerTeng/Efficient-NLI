@@ -29,6 +29,10 @@ def parse_args() -> argparse.ArgumentParser:
         action="store_true"
     )
     parser.add_argument(
+        "--do_preproc",
+        action="store_true"
+    )
+    parser.add_argument(
         "--mode", type=str, default="bert"
     )
     return parser.parse_args()
@@ -140,4 +144,3 @@ if __name__ == "__main__":
             f"{os.getcwd()}/data/prediction.csv",
             index=False
         )
-

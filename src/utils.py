@@ -1,18 +1,10 @@
 """
 General utility functions for the project.
 """
-from typing import Union, Dict
+from typing import Union, Dict, List
 import json
 import yaml
 import pandas as pd
-import gdown
-from .constants import DATA_URL
-
-def download_data() -> None:
-    """
-    Download data from the google drive using gdown
-    """
-    gdown.download_folder(DATA_URL, quiet=False)
 
 def load_data(path: str) -> Union[pd.DataFrame, Dict]:
     """
@@ -33,3 +25,24 @@ def load_data(path: str) -> Union[pd.DataFrame, Dict]:
             data = json.load(json_file)
 
     return data
+
+def parse_json_file(data: List[Dict[str, Union[str, List[str]]]]) -> List[Dict[str, str]]:
+    """
+    Parsing JSON file
+
+    data: (Dict) JSON data
+
+    Initial kv pairs in use:
+    - gold_label (y)
+    - sentence1 (premise)
+    - sentence2 (hypothesis)
+    """
+    new_data = list(
+        map(
+            lambda x: {
+                k: v for k, v in eval(x).items() if k in ["gold_label", "sentence1", "sentence2"]
+            },
+            data
+        )
+    )
+    return new_data
